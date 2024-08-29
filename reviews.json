@@ -1,0 +1,124 @@
+{
+  "reviews": [
+    {
+      "professor": "Dr. John Smith",
+      "subject": "Introduction to Robotics",
+      "stars": 5,
+      "review": "Excellent professor with deep knowledge. Engaging lectures."
+    },
+    {
+      "professor": "Dr. Emily Johnson",
+      "subject": "Advanced Calculus",
+      "stars": 4,
+      "review": "Very knowledgeable, but lectures can be a bit fast-paced."
+    },
+    {
+      "professor": "Dr. Michael Brown",
+      "subject": "Physics 101",
+      "stars": 3,
+      "review": "The course content is good, but the professor's teaching style is monotonous."
+    },
+    {
+      "professor": "Dr. Sarah Wilson",
+      "subject": "Machine Learning",
+      "stars": 5,
+      "review": "Fantastic course! Dr. Wilson explains complex topics clearly."
+    },
+    {
+      "professor": "Dr. David Lee",
+      "subject": "Organic Chemistry",
+      "stars": 2,
+      "review": "Difficult to understand. The lectures lack structure."
+    },
+    {
+      "professor": "Dr. Jennifer Davis",
+      "subject": "Data Structures",
+      "stars": 4,
+      "review": "Great content, but more practical examples would be helpful."
+    },
+    {
+      "professor": "Dr. James Martinez",
+      "subject": "Psychology 101",
+      "stars": 5,
+      "review": "Very engaging and insightful. Highly recommend this course."
+    },
+    {
+      "professor": "Dr. Karen Taylor",
+      "subject": "Sociology",
+      "stars": 3,
+      "review": "Interesting subject matter, but the professor's delivery is dry."
+    },
+    {
+      "professor": "Dr. Daniel White",
+      "subject": "Artificial Intelligence",
+      "stars": 5,
+      "review": "Dr. White is a great teacher. He makes complex AI topics easy to understand."
+    },
+    {
+      "professor": "Dr. Linda Thompson",
+      "subject": "Economics 101",
+      "stars": 4,
+      "review": "Clear and concise lectures. A solid introduction to economics."
+    },
+    {
+      "professor": "Dr. Richard Clark",
+      "subject": "Introduction to Programming",
+      "stars": 3,
+      "review": "Good content, but the pace of the course is too slow."
+    },
+    {
+      "professor": "Dr. Lisa Walker",
+      "subject": "Discrete Mathematics",
+      "stars": 5,
+      "review": "Excellent professor! Makes a difficult subject approachable."
+    },
+    {
+      "professor": "Dr. Robert Harris",
+      "subject": "Biology 101",
+      "stars": 2,
+      "review": "Not very engaging. The lectures are often boring."
+    },
+    {
+      "professor": "Dr. Barbara Lewis",
+      "subject": "Statistics",
+      "stars": 4,
+      "review": "Very thorough and knowledgeable. Lectures are well-organized."
+    },
+    {
+      "professor": "Dr. Steven Young",
+      "subject": "Ethics in Technology",
+      "stars": 5,
+      "review": "Incredibly engaging and thought-provoking course."
+    },
+    {
+      "professor": "Dr. Patricia King",
+      "subject": "Quantum Mechanics",
+      "stars": 3,
+      "review": "Challenging course, but the professor's explanations are sometimes unclear."
+    },
+    {
+      "professor": "Dr. Andrew Wright",
+      "subject": "History of Science",
+      "stars": 4,
+      "review": "Very informative and well-structured course. Dr. Wright is passionate about the subject."
+    },
+    {
+      "professor": "Dr. Susan Baker",
+      "subject": "Modern Literature",
+      "stars": 3,
+      "review": "Interesting material, but the professor's lectures can be a bit dry."
+    },
+    {
+      "professor": "Dr. Kenneth Scott",
+      "subject": "Philosophy 101",
+      "stars": 5,
+      "review": "Dr. Scott is an amazing lecturer. He makes philosophy fascinating."
+    },
+    {
+      "professor": "Dr. Laura Adams",
+      "subject": "Environmental Science",
+      "stars": 4,
+      "review": "Great course with practical insights. Dr. Adams is very knowledgeable."
+    }
+  ]
+}
