@@ -1,8 +1,31 @@
 "use client";
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Box, Button, Stack, TextField, Modal, Typography } from "@mui/material";
 import { useState } from "react";
 
 export default function Home() {
+  const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [professorUrl, setProfessorUrl] = useState('')
+
+  const handleClose = ()=>{
+    setOpen(false)
+  }
+  const handleOpen = ()=>{
+    setOpen(true)
+  }
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -49,6 +72,35 @@ export default function Home() {
       });
     });
   };
+
+  const handleSubmit = async ()=>{
+    //e.preventDefault();
+    handleClose
+    try {
+        const response = fetch("/api/scrape", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify([professorUrl]),
+        })/* .then( async (res)=>{
+          const data = await res.body.json()
+          return data;
+        }); */
+
+        const data = await response.body;
+        console.log(data)
+        setMessage(data);
+        sendMessage
+        
+
+    } catch (error) {
+        console.error('Error:', error);
+        console.log('An error occurred while processing your request.');
+    } finally {
+        setLoading(false);
+    }
+  }
 
   return (
     <main>
@@ -100,6 +152,24 @@ export default function Home() {
             ))}
           </Stack>
           <Stack direction={"row"} spacing={2} px={2}>
+          <Button variant="contained" onClick={handleOpen}>
+              Add Link
+          </Button>
+          <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+          >
+            <Box sx={style} width="400px" backgroundColor="white" alignSelf="center">
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Enter the URL to the page
+              </Typography>
+              <TextField value={professorUrl} label="Enter link" variant="outlined" onChange={(e) => setProfessorUrl(e.target.value)}>Enter link</TextField>
+              <Button variant="contained" onClick={handleSubmit} >Get Rating</Button>
+            </Box>
+          </Modal>
+
             <TextField
               label="Message"
               fullWidth
@@ -109,6 +179,7 @@ export default function Home() {
             <Button variant="contained" onClick={sendMessage}>
               Send
             </Button>
+
           </Stack>
         </Stack>
       </Box>
