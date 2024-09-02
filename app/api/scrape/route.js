@@ -31,7 +31,7 @@ export async function POST(req, res) {
 
         // Connect to your Pinecone index
         const indexName = "rag";
-        const index = pinecone.Index(indexName);
+        const index = pinecone.index(indexName);
 
         const openaiApiKey = process.env.OPENAI_API_KEY;
 
@@ -52,44 +52,37 @@ export async function POST(req, res) {
                         }
                     }
                 );
+                console.log(response.data.data[0])
 
                 const embedding = response.data.data[0].embedding;
 
                 // Prepare the vector object
                 const processed = []
-                const vector = {
-                    id: review.name, // Unique identifier for the professor
+                processed.push({
                     values: embedding,
+                    id: review.name, // Unique identifier for the professor
                     metadata: {
-                        review: review.reviews,
-                        subject: review.subjects1,
+                        review: review.reviews.join('; '),
+                        subject: review.subjects1.join(', '),
                         stars: review.stars,
                     }
-                };
-                processed.push(vector)
+                });
+                //processed.push(vector)
 
-                console.log('Processed data:', JSON.stringify(processed, null, 2));
+                console.log('Processed data:', processed);
                 console.log(processed.length)
 
 
                 // Upsert the vector into Pinecone
-                const upsertResponse = await index.upsert({
-                    vectors: processed,
-                    namespace: "ns1", // Optional namespace
-                });
+                const upsertResponse = await index.namespace('ns1').upsert(
+                    processed
+                );
 
-                console.log(`Upserted count: ${upsertResponse.upsertedCount}`);
+                console.log(`Upserted count: ${upsertResponse}`);
             } catch (error) {
                 console.error('Error inserting data into Pinecone:', error);
             }
         }
-
-        // Resolve the path to reviews.json
-        /* const reviewsPath = path.join(__dirname, '..', '..','..', 'reviews.json');
-
-        // Require the JSON file using the resolved path
-        console.log(reviewsPath)
-        const reviews1 = require(reviewsPath); */
 
         try {
             // Web scraping
@@ -120,32 +113,8 @@ export async function POST(req, res) {
             };
             console.log(scrapedData)
             insertNewData(scrapedData)
-            //teachers.push(scraped)
-/* 
-            fs.writeFile(
-                "reviews1.json",
-                JSON.stringify(reviews1),
-                err => {
-                    // Checking for errors 
-                    if (err) throw err;
-            
-                    // Success 
-                    console.log("Done writing");
-                }) */
-            // Send the scraped data to the OpenAI API
-            /* const openai = new OpenAIApi(new Configuration({
-                apiKey: process.env.OPENAI_API_KEY, // Make sure to set your OpenAI API key in the environment variables
-            }));
+     
 
-            const openaiResponse = await openai.createCompletion({
-                model: "gpt-3.5-turbo",
-                prompt: `Summarize the following data about a professor:\n\n${JSON.stringify(scrapedData, null, 2)}`,
-                max_tokens: 100,
-            });
- */
-
-            //const summary = openaiResponse.data.choices[0].text.trim();
-            //return new NextResponse(summary)
             const scraped = JSON.stringify(scrapedData, null, 2)
             console.log(scraped)
 
@@ -158,20 +127,3 @@ export async function POST(req, res) {
         }
         
 }
-
-
-
-
-
-
-/* // Example of inserting new review data
-const newReview = {
-    professor: "Professor X",
-    review: "This professor was excellent in explaining the concepts.",
-    subject: "Computer Science",
-    stars: 5
-};
-
-// Call the function to insert new review data
-insertNewData(newReview);
- */
