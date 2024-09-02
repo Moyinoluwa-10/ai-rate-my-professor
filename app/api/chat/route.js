@@ -10,9 +10,9 @@ Use them to answer the question if needed.
 
 // Create the POST function
 export async function POST(req) {
-  console.log(req)
+
   const data = await req.json();
-  console.log(data)
+
 
   // Initialize Pinecone and OpenAI
   const pc = new Pinecone({

@@ -75,7 +75,7 @@ export default function Home() {
 
   const handleSubmit = async ()=>{
     //e.preventDefault();
-    handleClose
+   
     try {
         const response = fetch("/api/scrape", {
             method: 'POST',
@@ -89,9 +89,10 @@ export default function Home() {
         }); */
 
         const data = await response.body;
-        console.log(data)
-        setMessage(data);
-        sendMessage
+        alert("successfully added professor link")
+        setOpen(false)
+        /* setMessage(data);
+        sendMessage */
         
 
     } catch (error) {
